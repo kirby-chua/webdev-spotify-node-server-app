@@ -12,5 +12,5 @@ export const deleteSong = async (sid) =>
 export const updateSong = async (sid, song) =>
     await songsModel.updateOne({_id: sid}, {$set: song});
 
-export const findSongByTrackId = async (tid) =>
-    await songsModel.findOne({tid})
+export const findSong = async (sid) =>
+    await songsModel.findOne({sid})

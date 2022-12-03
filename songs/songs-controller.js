@@ -31,9 +31,9 @@ const SongsController = (app) => {
         res.json(status);
     }
 
-    const findSongByTrackId = async (req, res) => {
-        const tid = req.params['tid']
-        const song = await songsDao.findSongByTrackId(tid)
+    const findSong = async (req, res) => {
+        const sid = req.params['sid']
+        const song = await songsDao.findSong(sid)
         if (song) {
             res.json(song)
             return
@@ -45,7 +45,7 @@ const SongsController = (app) => {
     app.get('/songs', findAllSongs)
     app.put('/songs/:sid', updateSong)
     app.delete('/songs/:sid', deleteSong)
-    app.get('/songs/:sid', findSongByTrackId)
+    app.get('/songs/:sid', findSong)
 }
 
 export default SongsController;
