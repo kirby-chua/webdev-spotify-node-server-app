@@ -10,7 +10,7 @@ export const userUnlikesSong = async (uid, sid) =>
 export const findSongsLikedByUser = async (uid) =>
     await likesModel
         .find({user: uid}, {user: false})
-        .populate('song', 'title')
+        .populate('song', 'title trackId')
         .exec()
 
 export const findUsersThatLikedSong = async (sid) =>

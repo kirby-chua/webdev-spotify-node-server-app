@@ -49,11 +49,8 @@ const UsersController = (app) => {
     }
 
     const logout = (req, res) => {
-        if (req.session['currentUser']) {
-            res.send(req.session['currentUser'])
-        } else {
-            res.sendStatus(403)
-        }
+        req.session.destroy()
+        res.sendStatus(200)
     }
 
     const profile = (req, res) => {
