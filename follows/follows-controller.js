@@ -1,4 +1,4 @@
-import * as followsDao from 'follows-dao.js'
+import * as followsDao from './follows-dao.js'
 
 const FollowsController = (app) => {
     const followUser = async (req, res) => {
