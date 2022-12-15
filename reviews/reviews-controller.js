@@ -10,6 +10,12 @@ const ReviewsController = (app) => {
         res.json(actualReview)
     }
 
+    const deleteReview = async (req, res) => {
+        const rid = req.params.rid
+        const status = await reviewsDao.deleteReview(rid)
+        res.json(status)
+    }
+
     const findReviewsBySong = async (req, res) => {
         const sid = req.params.sid
         const reviews = await reviewsDao.findReviewsBySong(sid)
@@ -24,6 +30,7 @@ const ReviewsController = (app) => {
         res.json(reviews)
     }
     app.post('/reviews', createReview)
+    app.delete('/reviews/:rid', deleteReview)
     app.get('/songs/:sid/reviews', findReviewsBySong)
     app.get('/users/:author/reviews', findReviewsByAuthor)
 }

@@ -20,3 +20,22 @@ export const findUsersThatLikedSong = async (sid) =>
 
 export const findAllLikes = async () =>
     await likesModel.find()
+
+export const getTopSongs = async () =>
+    await likesModel.aggregate([
+        {
+            '$group': {
+                '_id': '$song',
+                'likes': {
+                    '$sum': 1
+                }
+            }
+        }, {
+            '$lookup': {
+                'from': 'songs',
+                'localField': '_id',
+                'foreignField': '_id',
+                'as': 'result'
+            }
+        }
+    ])

@@ -37,11 +37,18 @@ const LikesController = (app) => {
         res.json(users)
     }
 
+    const getTopSongs = async (req, res) => {
+        const topSongs = await likesDao.getTopSongs()
+
+        res.json(topSongs)
+    }
+
     app.post('/users/:uid/likes/:sid', userLikesSong)
     app.delete('/users/:uid/likes/:sid', userUnlikesSong)
     app.get('/likes', findAllLikes)
     app.get('/users/:uid/likes', findSongsLikedByUser)
     app.get('/songs/:sid/likes', findUsersWhoLikedSong)
+    app.get('/top_songs', getTopSongs)
 }
 
 export default LikesController
