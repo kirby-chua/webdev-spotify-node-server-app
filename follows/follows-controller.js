@@ -11,7 +11,7 @@ const FollowsController = (app) => {
     }
 
     const findFollowers = async (req, res) => {
-        const followed = req.params.follower
+        const followed = req.params.followed
         const followers = await followsDao.findFollowers(followed)
 
         res.json(followers)
@@ -26,7 +26,7 @@ const FollowsController = (app) => {
 
     app.post('/follows', followUser)
     app.get('/users/:followed/followers', findFollowers)
-    app.get('users/:follower/following', findFollowing)
+    app.get('/users/:follower/following', findFollowing)
 }
 
 export default FollowsController

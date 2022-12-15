@@ -19,4 +19,4 @@ export const updateUser = async (uid, userUpdates) =>
     await usersModel.updateOne({_id: uid}, {$set: userUpdates})
 
 export const findUserById = async (uid) =>
-    await usersModel.find(uid, {password: false})
+    await usersModel.findById(uid, {password: false})
