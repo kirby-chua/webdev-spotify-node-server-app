@@ -10,6 +10,14 @@ const FollowsController = (app) => {
         res.json(actualFollow)
     }
 
+    const unfollowUser = async (req, res) => {
+        const followed = req.params.followed
+        const follower = req.session['currentUser']
+        const status = await followsDao.unFollowUser(follower._id, followed)
+
+        res.json(status)
+    }
+
     const findFollowers = async (req, res) => {
         const followed = req.params.followed
         const followers = await followsDao.findFollowers(followed)
@@ -25,6 +33,7 @@ const FollowsController = (app) => {
     }
 
     app.post('/follows', followUser)
+    app.delete('/follows/:followed', unfollowUser)
     app.get('/users/:followed/followers', findFollowers)
     app.get('/users/:follower/following', findFollowing)
 }
