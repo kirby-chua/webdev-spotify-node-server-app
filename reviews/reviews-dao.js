@@ -7,7 +7,7 @@ export const deleteReview = (rid) =>
     reviewsModel.deleteOne({_id: rid})
 
 export const findReviewsBySong = (sid) =>
-    reviewsModel.find({sid})
+    reviewsModel.find({itunesId: sid})
         .populate('author')
         .exec()
 

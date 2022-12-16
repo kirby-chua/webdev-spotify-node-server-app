@@ -37,5 +37,9 @@ export const getTopSongs = async () =>
                 'foreignField': '_id',
                 'as': 'result'
             }
+        }, {
+            '$sort': {
+                'likes': -1
+            }
         }
     ])
